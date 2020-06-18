@@ -1,0 +1,79 @@
+{% extends 'myadmin/index.html' %}
+
+{% block title %}
+    <title>书店-会员增加</title>
+{% endblock %}
+
+
+{% block con %}
+<html>
+ <head></head>
+ <body>
+  <div class="row-content am-cf">
+   <div class="row">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+     <div class="widget am-cf">
+      <div class="widget-head am-cf">
+       <div class="widget-title am-fl">
+        <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">图书分类添加</font>
+        </font>
+       </div>
+       <div class="widget-function am-fr">
+        <a href="javascript:;" class="am-icon-cog"></a>
+       </div>
+      </div>
+      <div class="widget-body am-fr">
+       <!--       主要的内容提交表单,数据提交给useradd页面后台进行处理-->
+       <form action="{% url 'myadmin_BookType_add' %}" class="am-form tpl-form-line-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+         <div class="am-form-group">
+         <label for="user-name" class="am-u-sm-3 am-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">所属分类</font></font><span class="tpl-form-line-small-title"><font style="vertical-align: inherit;"></font></span></label>
+         <div class="am-u-sm-9">
+           <select name="Book_pid" data-am-selected="{btnSize: 'sm'}" style="display: none;">
+            <option value="0"> 顶级分类 </option>
+            {% for i in types%}
+                <option value="{{i.id}}">{{i.nbsp}} {{ i.Book_name }} </option>
+            {% endfor %}
+           </select>
+
+         </div>
+        </div>
+
+
+        <div class="am-form-group">
+         <label for="user-name" class="am-u-sm-3 am-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">分类名称</font></font><span class="tpl-form-line-small-title"><font style="vertical-align: inherit;"></font></span></label>
+         <div class="am-u-sm-9">
+          <input type="text" class="tpl-form-input" name="Book_name" placeholder="请输入分类名称" />
+         </div>
+        </div>
+
+        <div class="am-form-group">
+         <div class="am-u-sm-9 am-u-sm-push-3">
+          <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success "><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交</font></font></button>
+         </div>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

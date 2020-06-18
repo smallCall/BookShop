@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>图书商城-后台登录</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="/static/myadmin/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/myadmin/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="/static/myadmin/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/static/myadmin/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="/static/myadmin/css/app.css">
+    <script src="/static/myadmin/js/jquery.min.js"></script>
+
+</head>
+
+<body data-type="login">
+    <script src="/static/myadmin/js/theme.js"></script>
+    <div class="am-g tpl-g">
+
+        <div class="tpl-login">
+            <div class="tpl-login-content">
+
+
+                <form action="{% url 'myadmin_login' %}" method="POST" class="am-form tpl-form-line-form">
+                    {% csrf_token %}
+                    <div class="am-form-group">
+                        <input type="text" name="username" class="tpl-form-input" id="user-name" placeholder="请输入账号">
+                    </div>
+
+                    <div class="am-form-group">
+                        <input type="password" name="password" class="tpl-form-input" id="user-name" placeholder="请输入密码">
+                    </div>
+
+                    <div class="am-form-group" style="position: relative;">
+                        <input type="text" name="vcode" class="tpl-form-input" id="user-name" placeholder="请输入验证码">
+                        <img src="{% url 'myadmin_verifycode' %}" onclick="this.src='{% url 'myadmin_verifycode' %}'+'?'+Math.random()" alt="" style="position: absolute;top:-8px;right:5px;">
+                    </div>
+
+                    <div class="am-form-group">
+                        <button class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/static/myadmin/js/amazeui.min.js"></script>
+    <script src="/static/myadmin/js/app.js"></script>
+
+</body>
+
+</html>

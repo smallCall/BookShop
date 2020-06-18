@@ -1,0 +1,151 @@
+{% extends 'myadmin/index.html' %}
+
+{% block title %}
+    <title>书店-会员管理</title>
+{% endblock %}
+
+
+
+{% block con %}
+<html>
+ <head></head>
+ <body>
+  <div class="row-content am-cf">
+   <div class="row">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+     <div class="widget am-cf">
+      <div class="widget-head am-cf">
+       <div class="widget-title  am-cf">
+        文章列表
+       </div>
+      </div>
+      <div class="widget-body  am-fr">
+       <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+        <div class="am-form-group">
+         <div class="am-btn-toolbar">
+          <div class="am-btn-group am-btn-group-xs">
+           <a href="{% url 'myadmin_user_add' %}" class="am-btn am-btn-default am-btn-success">
+            <span class="am-icon-plus"></span>
+            新增
+           </a>
+
+          </div>
+         </div>
+        </div>
+       </div>
+                <form action="">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                        <div class="am-form-group tpl-table-list-select">
+                            <select name="select_type" data-am-selected="{btnSize: 'sm'}" style="display: none;">
+                              <option value="all" {% if request.GET.selec_ttype == 'all'%} selected {% endif %}>ID/用户名/手机号</option>
+                              <option value="id" {% if request.GET.selec_ttype == 'id'%} selected {% endif %}>ID</option>
+                              <option value="User_name" {% if request.GET.selec_ttype == 'username'%} selected {% endif %}>用户名</option>
+                              <option value="Phone" {% if request.GET.selec_ttype == 'phone'%} selected {% endif %}>手机号</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+                        <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+                            <input type="text" name="key_words" value="{{ request.GET.key_words }}" class="am-form-field ">
+                            <span class="am-input-group-btn">
+                                <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"></button>
+                              </span>
+                        </div>
+                    </div>
+                </form>
+
+       <div class="am-u-sm-12">
+        <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
+         <thead>
+          <tr>
+           <th>头像</th>
+           <th>ID</th>
+           <th>用户名</th>
+           <th>手机号</th>
+           <th>性别</th>
+           <th>年龄</th>
+           <th>注册时间</th>
+           <th>最后登录时间</th>
+           <th>状态</th>
+           <th>操作</th>
+          </tr>
+         </thead>
+         <tbody>
+         {% for i in data %}
+          <tr class="gradeX">
+           <td> <img src="{{ i.Face_url }}" class="tpl-table-line-img" alt="" /> </td>
+           <td class="am-text-middle userid">{{ i.id }}</td>
+           <td class="am-text-middle">{{ i.User_name }}</td>
+           <td class="am-text-middle">{{ i.Phone }}</td>
+           <td class="am-text-middle">
+              {% if i.Sex == 0 %}
+                男
+              {% else %}
+                女
+              {% endif %}
+           </td>
+           <td class="am-text-middle">{{ i.Age }}</td>
+           <td class="am-text-middle">{{ i.Add_time|date:'Y-m-d H:i:s' }}</td>
+           <td class="am-text-middle">{{ i.Save_time|date:'Y-m-d H:i:s' }}</td>
+           <td class="am-text-middle">
+            {% if i.Status == 0 %}
+             <span style="color:white">正常</span>
+            {% else %}
+             <span style="color:red">禁用</span> 禁用
+            {% endif %}
+           </td>
+           <td class="am-text-middle">
+            <div class="tpl-table-black-operation">
+             <a href="{% url 'myadmin_user_edit' i.id %}">
+              <i class="am-icon-pencil"></i> 编辑
+             </a>
+             <a href="javascript:;" class="tpl-table-black-operation-del userdelete"> <i class="am-icon-trash"></i> 删除 </a>
+            </div> </td>
+          </tr>
+         {% endfor %}
+          <!-- more data -->
+         </tbody>
+        </table>
+       </div>
+       <div class="am-u-lg-12 am-cf">
+        <div class="am-fr">
+         <ul class="am-pagination tpl-pagination">
+             {% load pagetag %}
+ <!-- <li class="am-disabled"><a href="#">«</a></li> -->
+             {% show_page data.paginator.num_pages request %}
+ <!-- <li class="am-active"><a href="#">1</a></li> -->
+
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
+<script>
+  // ajax删除用户
+  // 1.给删除按钮绑定点击事件
+  $('.userdelete').click(function(){
+   // 2.获取当前点击用户的id
+    var userid = $(this).parents('tr').find('.userid').text()
+    var $this = $(this)
+   // alert(userid)
+  // 3.发送ajax请求给后台进行删除，设置一个会回调函数（请求回来之后的操作）
+    $.get('{% url 'myadmin_user_delete' %}',{'id':userid},function(data){
+     // 4.判断响应的结果
+       alert(data['msg'])
+       if(data['error'] == 0 ){
+        // 如果后台数据删除成功，则页面中删除这一行数据
+        // 此时的$(this) 代表的不再是之前的那个删除按钮而是ajax对象
+         $this.parents('tr').remove()
+       }
+    },'json')
+    // 返回的是json
+  })
+</script>
+
+{% endblock %}
+

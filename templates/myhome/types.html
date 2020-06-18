@@ -1,0 +1,760 @@
+{% extends 'myhome/base.html' %}
+{% block title %}
+<title>有文化-图书商城-列表页面</title>
+{% endblock %}
+
+{% block con %}
+<div class="breadcrumbs-area mb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumbs-menu">
+                    <ul>
+                        <li><a href="{% url 'myhome_index' %}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">首页</font></font></a></li>
+                        <li><a href="{% url 'myhome_types' typeobj.parent.id %}" class="active"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ typeobj.parent.name }}</font></font></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="shop-main-area mb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <div class="shop-left">
+                    <div class="section-title-5 mb-30">
+                        <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">购物选择</font></font></h2>
+                    </div>
+                    <div class="left-title mb-20">
+                        <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ typeobj.name }}</font></font></h4>
+                    </div>
+                    <div class="left-menu mb-30">
+                        <ul>
+                            {% for i in typeobj.sub %}
+                            <li>
+                                <a href="{% url 'myhome_types' i.id %}">
+                                    <font style="vertical-align: inherit;{% if i.id == typeobj.obj.id %} color:#f07c29;{% endif %}">
+                                        <font style="vertical-align: inherit;">{{ i.name }}</font>
+                                    </font>
+                                    <span>
+                                        <font style="vertical-align: inherit;">
+                                            <font style="vertical-align: inherit;">（{{ i.books_set.count }}）</font>
+                                        </font>
+                                    </span>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="left-title mb-20">
+                        <h4><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">随机</font></font></h4>
+                    </div>
+                    <div class="random-area mb-30">
+                        <div class="product-active-2 owl-carousel owl-loaded owl-drag">
+
+
+                        <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-526px, 0px, 0px); transition: all 0s ease 0s; width: 1578px;"><div class="owl-item cloned" style="width: 263px;"><div class="product-total-2">
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/20.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/20.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">努力一日游</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 33.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/21.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/21.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">精巧的肩手提袋</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 35.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/22.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/22.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">竞速手提袋</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 35.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div><div class="owl-item cloned" style="width: 263px;"><div class="product-total-2">
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/23.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/23.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">远航瑜伽包</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 33.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/24.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/24.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一时冲动</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 70.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 74.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/22.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/22.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">融合背包</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 59.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div><div class="owl-item active" style="width: 263px;"><div class="product-total-2">
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/20.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/20.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">努力一日游</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 33.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/21.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/21.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">精巧的肩手提袋</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 35.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/22.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/22.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">竞速手提袋</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 35.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div><div class="owl-item" style="width: 263px;"><div class="product-total-2">
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/23.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/23.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">远航瑜伽包</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 33.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/24.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/24.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一时冲动</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 70.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 74.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/22.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/22.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">融合背包</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 59.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div><div class="owl-item cloned" style="width: 263px;"><div class="product-total-2">
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/20.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/20.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">努力一日游</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 33.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/21.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/21.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">精巧的肩手提袋</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 35.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/22.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/22.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">竞速手提袋</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 35.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div><div class="owl-item cloned" style="width: 263px;"><div class="product-total-2">
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/23.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/23.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">远航瑜伽包</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 30.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 33.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/24.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/24.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">一时冲动</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 70.00</font></font></li>
+                                                <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 74.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/22.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/22.jpg" alt="书"></a></div>
+                                    <div class="most-product-content">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">融合背包</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 59.00</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div></div></div></div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="fa fa-angle-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="fa fa-angle-right"></i></button></div><div class="owl-dots disabled"></div></div>
+                    </div>
+                    <div class="banner-area mb-30">
+                        <div class="banner-img-2"><a href="#"><img src="/static/myhome/img/banner/31.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/banner/31.jpg" alt="旗帜"></a></div>
+                    </div>
+                    <div class="left-title-2 mb-30">
+                        <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">比较产品</font></font></h2>
+                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您没有可比较的项目。</font></font></p>
+                    </div>
+                    <div class="left-title-2">
+                        <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我的收藏</font></font></h2>
+                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您的愿望清单中没有任何物品。</font></font></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                <div class="category-image mb-30"><a href="#"><img src="/static/myhome/img/banner/32.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/banner/32.jpg" alt="旗帜"></a></div>
+                <div class="section-title-5 mb-30">
+                    <h2><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ typeobj.obj.name|default:typeobj.parent.name }}</font></font></h2>
+                </div>
+                <div class="toolbar mb-30">
+                    <div class="shop-tab">
+                        <div class="tab-3">
+                            <ul>
+                                <li class="active"><a href="#th" data-toggle="tab"><i class="fa fa-th-large"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">格网</font></font></a></li>
+                                <li><a href="#list" data-toggle="tab"><i class="fa fa-bars"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">清单</font></font></a></li>
+                            </ul>
+                        </div>
+                        <div class="list-page">
+                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目1-9，共11</font></font></p>
+                        </div>
+                    </div>
+                    <div class="field-limiter">
+                        <div class="control"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">节目</font></font></span><!-- chosen-start --><select data-placeholder="Default Sorting" style="width:50px;" class="chosen-select" tabindex="1">
+                                <option value="Sorting"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1个</font></font></option>
+                                <option value="popularity"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></option>
+                                <option value="rating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></option>
+                                <option value="date"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4</font></font></option>
+                            </select><!-- chosen-end -->
+                        </div>
+                    </div>
+                    <div class="toolbar-sorter"><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">排序方式</font></font></span><select id="sorter" class="sorter-options" data-role="sorter">
+                            <option selected="selected" value="position"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">位置</font></font></option>
+                            <option value="name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">产品名称</font></font></option>
+                            <option value="price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">价钱</font></font></option>
+                        </select><a href="#"><i class="fa fa-arrow-up"></i></a></div>
+                </div><!-- tab-area-start -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="th">
+                        <div class="row">
+
+                            {% for ii in typeobj.googlist %}
+                            <div class="col-lg-3 col-md-4 col-sm-6">
+                                <!-- single-product-start -->
+                                <div class="product-wrapper mb-40">
+                                    <div class="product-img">
+                                        <a href="{% url 'myhome_book' ii.id %}">
+                                            <img src="{{ ii.bookimgs_set.first.img_url }}" alt="书" class="primary">
+                                        </a>
+
+                                    </div>
+                                    <div class="product-details text-center">
+                                        <div class="product-rating">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <h4><a href="{% url 'myhome_book' ii.id %}"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ ii.title }}</font></font></a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{{ ii.price }} 元</font></font></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-link">
+                                        <div class="product-button">
+                                            <a href="#" title="添加到购物车">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                <font style="vertical-align: inherit;">
+                                                    <font style="vertical-align: inherit;">添加到购物车</font>
+                                                </font>
+                                            </a>
+                                        </div>
+                                        <div class="add-to-link">
+                                            <ul>
+                                                <li>
+                                                    <a href="{% url 'myhome_book' ii.id %}" title="细节"><i class="fa fa-external-link"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- single-product-end -->
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="list">
+                        <!-- single-shop-start -->
+                        <div class="single-shop mb-30">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="product-wrapper-2">
+                                        <div class="product-img"><a href="#"><img src="/static/myhome/img/product/3.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/3.jpg" alt="书" class="primary"></a></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="product-wrapper-content">
+                                        <div class="product-details">
+                                            <div class="product-rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">皇冠峰会</font></font></a></h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 36.00</font></font></li>
+                                                    <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 38.00</font></font></li>
+                                                </ul>
+                                            </div>
+                                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运动型的Joust Duffle包不能被打败-不在体育馆里，在行李传送带上，也不在任何地方。</font><font style="vertical-align: inherit;">足够大，可以搬运篮球或足球以及一些运动鞋，并有足够的余地，...</font></font></p>
+                                        </div>
+                                        <div class="product-link">
+                                            <div class="product-button"><a href="#" title="添加到购物车"><i class="fa fa-shopping-cart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加到购物车</font></font></a></div>
+                                            <div class="add-to-link">
+                                                <ul>
+                                                    <li><a href="product-details.html" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/product-details.html" title="细节"><i class="fa fa-external-link"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- single-shop-end -->
+                        <!-- single-shop-start -->
+                        <div class="single-shop mb-30">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="product-wrapper-2">
+                                        <div class="product-img"><a href="#"><img src="/static/myhome/img/product/18.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/18.jpg" alt="书" class="primary"></a></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="product-wrapper-content">
+                                        <div class="product-details">
+                                            <div class="product-rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">驱动背包</font></font></a></h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 34.00</font></font></li>
+                                                    <li class="old-price"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 36.00</font></font></li>
+                                                </ul>
+                                            </div>
+                                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运动型的Joust Duffle包不能被打败-不在体育馆里，在行李传送带上，也不在任何地方。</font><font style="vertical-align: inherit;">足够大，可以搬运篮球或足球以及一些运动鞋，并有足够的余地，...</font></font></p>
+                                        </div>
+                                        <div class="product-link">
+                                            <div class="product-button"><a href="#" title="添加到购物车"><i class="fa fa-shopping-cart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加到购物车</font></font></a></div>
+                                            <div class="add-to-link">
+                                                <ul>
+                                                    <li><a href="product-details.html" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/product-details.html" title="细节"><i class="fa fa-external-link"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- single-shop-end -->
+                        <!-- single-shop-start -->
+                        <div class="single-shop mb-30">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="product-wrapper-2">
+                                        <div class="product-img"><a href="#"><img src="/static/myhome/img/product/10.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/10.jpg" alt="书" class="primary"></a></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="product-wrapper-content">
+                                        <div class="product-details">
+                                            <div class="product-rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">融合背包</font></font></a></h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 59.00</font></font></li>
+                                                </ul>
+                                            </div>
+                                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运动型的Joust Duffle包不能被打败-不在体育馆里，在行李传送带上，也不在任何地方。</font><font style="vertical-align: inherit;">足够大，可以搬运篮球或足球以及一些运动鞋，并有足够的余地，...</font></font></p>
+                                        </div>
+                                        <div class="product-link">
+                                            <div class="product-button"><a href="#" title="添加到购物车"><i class="fa fa-shopping-cart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加到购物车</font></font></a></div>
+                                            <div class="add-to-link">
+                                                <ul>
+                                                    <li><a href="product-details.html" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/product-details.html" title="细节"><i class="fa fa-external-link"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- single-shop-end -->
+                        <!-- single-shop-start -->
+                        <div class="single-shop mb-30">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="product-wrapper-2">
+                                        <div class="product-img"><a href="#"><img src="/static/myhome/img/product/5.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/5.jpg" alt="书" class="primary"></a></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="product-wrapper-content">
+                                        <div class="product-details">
+                                            <div class="product-rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">雪碧瑜伽带一套</font></font></a></h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    <li><span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">开始于</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 34.00美元</font></font></li>
+                                                </ul>
+                                            </div>
+                                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运动型的Joust Duffle包不能被打败-不在体育馆里，在行李传送带上，也不在任何地方。</font><font style="vertical-align: inherit;">足够大，可以搬运篮球或足球以及一些运动鞋，并有足够的余地，...</font></font></p>
+                                        </div>
+                                        <div class="product-link">
+                                            <div class="product-button"><a href="#" title="添加到购物车"><i class="fa fa-shopping-cart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加到购物车</font></font></a></div>
+                                            <div class="add-to-link">
+                                                <ul>
+                                                    <li><a href="product-details.html" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/product-details.html" title="细节"><i class="fa fa-external-link"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- single-shop-end -->
+                        <!-- single-shop-start -->
+                        <div class="single-shop">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="product-wrapper-2">
+                                        <div class="product-img"><a href="#"><img src="/static/myhome/img/product/19.jpg" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/img/product/19.jpg" alt="书" class="primary"></a></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="product-wrapper-content">
+                                        <div class="product-details">
+                                            <div class="product-rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">竞速手提袋</font></font></a></h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    <li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">$ 32.00</font></font></li>
+                                                </ul>
+                                            </div>
+                                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">运动型的Joust Duffle包不能被打败-不在体育馆里，在行李传送带上，也不在任何地方。</font><font style="vertical-align: inherit;">足够大，可以搬运篮球或足球以及一些运动鞋，并有足够的余地，...</font></font></p>
+                                        </div>
+                                        <div class="product-link">
+                                            <div class="product-button"><a href="#" title="添加到购物车"><i class="fa fa-shopping-cart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">添加到购物车</font></font></a></div>
+                                            <div class="add-to-link">
+                                                <ul>
+                                                    <li><a href="product-details.html" tppabs="http://v.bootstrapmb.com/2018/7/rlrum1631/product-details.html" title="细节"><i class="fa fa-external-link"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- single-shop-end -->
+                    </div>
+                </div><!-- tab-area-end -->
+                <!-- pagination-area-start -->
+                <div class="pagination-area mt-50">
+                    <div class="list-page-2">
+                        <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目1-9，共11</font></font></p>
+                    </div>
+                    <div class="page-number">
+                        <ul>
+                            <li><a href="#" class="active"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1个</font></font></a></li>
+                            <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></a></li>
+                            <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></a></li>
+                            <li><a href="#"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4</font></font></a></li>
+                            <li><a href="#" class="angle"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div><!-- pagination-area-end -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

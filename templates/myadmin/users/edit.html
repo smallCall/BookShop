@@ -1,0 +1,125 @@
+{% extends 'myadmin/index.html' %}
+
+{% block title %}
+    <title>书店-会员管理</title>
+{% endblock %}
+
+
+{% block con %}
+<html>
+ <head></head>
+ <body>
+  <div class="row-content am-cf">
+   <div class="row">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+     <div class="widget am-cf">
+      <div class="widget-head am-cf">
+       <div class="widget-title am-fl">
+        <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">会员修改</font>
+        </font>
+       </div>
+       <div class="widget-function am-fr">
+        <a href="javascript:;" class="am-icon-cog"></a>
+       </div>
+      </div>
+      <div class="widget-body am-fr"
+       <!--       主要的内容提交表单,数据提交给useradd页面后台进行处理-->
+       <form action="{% url 'myadmin_user_edit' userobj.id %}" class="am-form tpl-form-line-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="am-form-group">
+         <label for="user-name" class="am-u-sm-3 am-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户名：</font></font><span class="tpl-form-line-small-title"><font style="vertical-align: inherit;"></font></span></label>
+         <div class="am-u-sm-9">
+          <input type="text" class="tpl-form-input" name="User_name" placeholder="请输入用户名" value="{{ userobj.User_name }}" />
+         </div>
+        </div>
+        <div class="am-form-group">
+         <label for="user-name" class="am-u-sm-3 am-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">手机号：</font></font><span class="tpl-form-line-small-title"><font style="vertical-align: inherit;"></font></span></label>
+         <div class="am-u-sm-9">
+          <input type="text" value="{{ userobj.Phone }}" class="tpl-form-input" minlength="11" maxlength="11" name="Phone" placeholder="请输入手机号" />
+         </div>
+        </div>
+        <div class="am-form-group">
+         <label for="user-name" class="am-u-sm-3 am-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">性别：</font></font><span class="tpl-form-line-small-title"><font style="vertical-align: inherit;"></font></span></label>
+         <div class="am-u-sm-9">
+
+              <label class="am-radio-inline" >
+               <input type="radio" name="Sex" value="0" checked>男
+              </label>
+
+              <label class="am-radio-inline" >
+               <input type="radio" name="Sex" value="1" >女
+              </label>
+
+         </div>
+        </div>
+        <div class="am-form-group">
+         <label for="user-name" class="am-u-sm-3 am-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">年龄：</font></font><span class="tpl-form-line-small-title"><font style="vertical-align: inherit;"></font></span></label>
+         <div class="am-u-sm-9">
+          <input type="number"  value="{{ userobj.Age }}" min="1" max="110" class="tpl-form-input" name="Age" placeholder="年龄" />
+         </div>
+        </div>
+        <div class="am-form-group">
+         <label for="user-weibo" class="am-u-sm-3 am-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">头像：</font></font><span class="tpl-form-line-small-title"><font style="vertical-align: inherit;"></font></span></label>
+         <div class="am-u-sm-9">
+          <div class="am-form-group am-form-file">
+           <div class="tpl-form-file-img">
+            <img id="img" src="{{ userobj.Face_url }}"  alt=""  width="125" height="120"/>
+           </div>
+           <br/>
+           <button type="button" class="am-btn am-btn-danger am-btn-sm"> <i class="am-icon-cloud-upload"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 添加头像</font></font></button>
+           <input  id="face" type="file"  name="Face_url" multiple="" />
+          </div>
+         </div>
+        </div>
+        <script>
+         // 给上传控件绑定事件
+         $('#face').change(function(){
+           //判断是否选择了图片
+           if(this.files.length == ''){
+             //取消了图片
+             $('#img').attr('src', '')
+           }
+           //获取当前用户选择的图片对象
+           var file = this.files[0]
+           //实例化文件读取对象
+           var read = new FileReader()
+           //读取上传的文件数据为 DataURL
+           read.readAsDataURL(file)
+           //读取成功后，显示
+           read.onload = function(){
+            $('#img').attr('src',this.result)
+           }
+           console.log(file)
+         })
+        </script>
+
+        <div class="am-form-group">
+         <div class="am-u-sm-9 am-u-sm-push-3">
+          <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success "><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">提交</font></font></button>
+         </div>
+        </div>
+       </form>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

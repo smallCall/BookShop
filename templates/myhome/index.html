@@ -1,0 +1,354 @@
+{% extends 'myhome/base.html' %}
+{% block title %}
+<title>有文化-图书商城</title>
+{% endblock %}
+
+{% block con %}
+    <!-- slider-group-start -->
+    <div class="slider-group  mt-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <!-- slider-area-start -->
+                    <div class="slider-area">
+                        <div class="slider-active owl-carousel">
+                            <div class="single-slider slider-hm4-1 pt-154 pb-154 bg-img" style="background-image:url(/static/myhome/img/slider/1.jpg);">
+                                <div class="slider-content-4 slider-animated-1 pl-40">
+                                    <h1>Sale up to 30% off</h1>
+                                    <h2>Books in Store</h2><a href="#">Shopping now!</a>
+                                </div>
+                            </div>
+                            <div class="single-slider pt-154 pb-154 bg-img" style="background-image:url(/static/myhome/img/slider/2.jpg);">
+                                <div class="slider-content-4 slider-animated-1 pl-40">
+                                    <h1>Sale up to 30% off</h1>
+                                    <h2>Books in Order</h2><a href="#">Shopping now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- slider-area-end -->
+                </div>
+                <div class="col-lg-3 col-md-3 hidden-sm col-xs-12">
+                    <!-- banner-static-2-start -->
+                    <div class="banner-static-2">
+                        <div class="banner-img-2"><a href="#"><img src="/static/myhome/img/banner/20.jpg"  /></a></div><!-- banner-area-3-start -->
+                        <div class="banner-area-3">
+                            <!-- single-banner-2-start -->
+                            <div class="single-banner-2 mt-16">
+                                <div class="single-icon-2"><a href="#"><img class="service-blue-img" src="/static/myhome/img/icon-img/service-1.png"  /></a></div>
+                                <div class="single-text-2">
+                                    <h2>全场包邮</h2>
+                                    <p>订单累计超过500元免邮费</p>
+                                </div>
+                            </div><!-- single-banner-2-end -->
+                            <!-- single-banner-2-start -->
+                            <div class="single-banner-2 mt-16">
+                                <div class="single-icon-2"><a href="#"><img class="service-blue-img" src="/static/myhome/img/icon-img/service-2.png"  /></a></div>
+                                <div class="single-text-2">
+                                    <h2>退款承诺</h2>
+                                    <p>不满意%100退款</p>
+                                </div>
+                            </div><!-- single-banner-2-end -->
+                            <!-- single-banner-2-start -->
+                            <div class="single-banner-2 mt-16">
+                                <div class="single-icon-2"><a href="#"><img class="service-blue-img" src="/static/myhome/img/icon-img/service-3.png"  /></a></div>
+                                <div class="single-text-2">
+                                    <h2>货到付款</h2>
+                                    <p>收到物品再付费</p>
+                                </div>
+                            </div><!-- single-banner-2-end -->
+                        </div><!-- banner-area-3-end -->
+                    </div><!-- banner-static-2-end -->
+                </div>
+            </div>
+        </div>
+    </div><!-- slider-group-end -->
+    <!-- home-main-area-start -->
+    <div class="home-main-area mt-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <!-- category-area-start -->
+                    <div class="category-area mb-30">
+                        <h3><a href="#">分类菜单 <i class="fa fa-bars"></i></a></h3>
+                        <div class="category-menu">
+                            <nav class="menu">
+                                <ul>
+                                {% for i in types %}
+                                    <li class="cr-dropdown">
+                                        <a href="{% url 'myhome_types' i.id %}">{{ i.name }}
+                                            <i class="none-lg fa fa-angle-down"></i>
+                                            <i class="none-sm fa fa-angle-right"></i>
+                                        </a>
+                                        <div class="left-menu">
+                                            {% for ii in i.sub %}
+                                            <span class="mb-30">
+                                                <a href="{% url 'myhome_types' ii.id %}" class="title">{{ ii.name }}</a>
+                                                {% for iii in ii.books_set.all %}
+                                                <a href="{% url 'myhome_book' iii.id %}">{{ iii.title }}</a>
+                                                {% endfor %}
+                                            </span>
+                                            {% endfor %}
+
+                                        </div>
+
+                                    </li>
+                                {% endfor %}
+
+                                    <li class="rx-parent"><a class="rx-default"><span class="cat-thumb fa fa-plus"></span> More categories</a><a class="rx-show"><span class="cat-thumb fa fa-minus"></span> close menu</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- category-area-end -->
+
+                    <!-- most-product-area-start -->
+                    <div class="most-product-area mb-30">
+                        <div class="section-title-2 mb-30">
+                            <h3>热门图书</h3>
+                        </div>
+                        <div class="product-active-2 owl-carousel">
+                            <div class="product-total-2">
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#">
+                                        <img src="/static/myhome/img/product/20.jpg"  /></a></div>
+                                    <div class="most-product-content">
+                                        <h4><a href="#">Endeavor Daytrip</a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li>$30.00</li>
+                                                <li class="old-price">$33.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img">
+                                        <a href="#">
+                                            <img src="/static/myhome/img/product/21.jpg"  />
+                                        </a>
+                                    </div>
+                                    <div class="most-product-content">
+                                        <h4><a href="#">Saaaae</a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li>$30.00</li>
+                                                <li class="old-price">$35.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/22.jpg"  alt="book" /></a></div>
+                                    <div class="most-product-content">
+                                        <h4><a href="#">66666</a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li>$35.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-total-2">
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/23.jpg"  /></a></div>
+                                    <div class="most-product-content">
+                                        <h4><a href="#">AAAA</a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li>$30.00</li>
+                                                <li class="old-price">$33.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product bd mb-18">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/24.jpg"  /></a></div>
+                                    <div class="most-product-content">
+                                        <h4><a href="#">BBBB</a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li>$70.00</li>
+                                                <li class="old-price">$74.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-most-product">
+                                    <div class="most-product-img"><a href="#"><img src="/static/myhome/img/product/22.jpg"  /></a></div>
+                                    <div class="most-product-content">
+                                        <h4><a href="#">Fusion Backpack</a></h4>
+                                        <div class="product-price">
+                                            <ul>
+                                                <li>$59.00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- most-product-area-end -->
+
+                    <!-- block-newsletter-area-start -->
+                    <div class="block-newsletter">
+                        <h2>Sign up for send newsletter</h2>
+                        <p>You can be always up to date with our company new!</p>
+                        <form action="#"><input type="text" placeholder="Enter your email address" /></form><a href="#">Send Email</a>
+                    </div><!-- block-newsletter-area-end -->
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+
+                    <!-- 图书商品 -->
+
+                    <div class="hot-sell-area-2 pb-50">
+                        <div class="section-title-2 title-big bt pt-50 mb-30">
+                            <h3>
+                                <font style="vertical-align: inherit;">
+                                    <font style="vertical-align: inherit;">热卖</font></font>
+                            </h3>
+                        </div>
+                        <div class="hot-sell-active owl-carousel owl-loaded owl-drag">
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage" style="transform: translate3d(-1446px, 0px, 0px); transition: all 1s ease 0s; width: 2894px;">
+                                {% for i in googsdata %}
+                                    <div class="owl-item" style="width: 269.333px; margin-right: 20px;">
+                                        <div class="product-wrapper">
+                                            <div class="product-img">
+                                                <a href="{% url 'myhome_book' i.id %}">
+                                                    <img src="{{ i.bookimgs_set.first.img_url }}" style="height: 270px;width: 270px;" class="primary"></a>
+
+                                                <div class="product-flag">
+                                                    <ul>
+                                                        <li>
+                                                            <span class="sale">
+                                                                <font style="vertical-align: inherit;">
+                                                                    <font style="vertical-align: inherit;">新</font></font>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="product-details text-center">
+
+                                                <div class="product-rating mt-20">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#">
+                                                                <i class="fa fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <h4>
+                                                    <a href="{% url 'myhome_book' i.id %}">
+                                                        <font style="vertical-align: inherit;">
+                                                            <font style="vertical-align: inherit;">{{ i.title }}</font></font>
+                                                    </a>
+                                                </h4>
+                                                <div class="product-price">
+                                                    <ul>
+                                                        <li>
+                                                            <font style="vertical-align: inherit;">
+                                                                <font style="vertical-align: inherit;">{{ i.price }}元</font></font>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                {% endfor %}
+
+                                </div>
+                            </div>
+                            <div class="owl-nav">
+                                <button type="button" role="presentation" class="owl-prev">
+                                    <i class="fa fa-angle-left"></i>
+                                </button>
+                                <button type="button" role="presentation" class="owl-next">
+                                    <i class="fa fa-angle-right"></i>
+                                </button>
+                            </div>
+                            <div class="owl-dots disabled"></div>
+                        </div>
+                    </div>
+
+                    <!-- end 图书商品 -->
+
+
+                </div>
+            </div>
+        </div>
+    </div><!-- home-main-area-end -->
+    <!-- banner-area-start -->
+    <div class="banner-area-5 mtb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner-img-2 for-height"><a href="#"><img src="/static/myhome/img/banner/5.jpg"  /></a>
+                        <div class="banner-text">
+                            <h3>G. Meyer Books & Spiritual Traveler Press</h3>
+                            <h2>Sale up to 30% off</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- banner-area-end -->
+    <!-- social-group-area-start -->
+    <div class="social-group-area ptb-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="section-title-3">
+                        <h3>Latest Tweets</h3>
+                    </div>
+                    <div class="twitter-content">
+                        <div class="twitter-icon"><a href="#"><i class="fa fa-twitter"></i></a></div>
+                        <div class="twitter-text">
+                            <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum notare quam</p><a href="#">posthemes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="section-title-3">
+                        <h3>Stay Connected</h3>
+                    </div>
+                    <div class="link-follow">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fa fa-flickr"></i></a></li>
+                            <li class="hidden-sm"><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                            <li class="hidden-sm"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- social-group-area-end -->
+{% endblock %}

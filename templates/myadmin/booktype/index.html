@@ -1,0 +1,218 @@
+{% extends 'myadmin/index.html' %}
+
+{% block title %}
+    <title>书店-图书分类管理</title>
+{% endblock %}
+
+
+
+{% block con %}
+<html>
+ <head></head>
+ <body>
+  <div class="row-content am-cf">
+   <div class="row">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+     <div class="widget am-cf">
+      <div class="widget-head am-cf">
+       <div class="widget-title  am-cf">
+        文章列表
+       </div>
+      </div>
+      <div class="widget-body  am-fr">
+       <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+        <div class="am-form-group">
+         <div class="am-btn-toolbar">
+          <div class="am-btn-group am-btn-group-xs">
+           <a href="{% url 'myadmin_BookType_add' %}" class="am-btn am-btn-default am-btn-success">
+            <span class="am-icon-plus"></span>
+            新增
+           </a>
+
+          </div>
+         </div>
+        </div>
+       </div>
+                <form action="">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+                        <div class="am-form-group tpl-table-list-select">
+                            <select name="select_type" data-am-selected="{btnSize: 'sm'}" style="display: none;">
+                              <option value="all" {% if request.GET.selec_ttype == 'all'%} selected {% endif %}>ID/用户名/手机号</option>
+                              <option value="id" {% if request.GET.selec_ttype == 'id'%} selected {% endif %}>ID</option>
+                              <option value="User_name" {% if request.GET.selec_ttype == 'username'%} selected {% endif %}>用户名</option>
+                              <option value="Phone" {% if request.GET.selec_ttype == 'phone'%} selected {% endif %}>手机号</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+                        <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+                            <input type="text" name="key_words" value="{{ request.GET.key_words }}" class="am-form-field ">
+                            <span class="am-input-group-btn">
+                                <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"></button>
+                              </span>
+                        </div>
+                    </div>
+                </form>
+
+       <div class="am-u-sm-12">
+        <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
+         <thead>
+          <tr>
+           <th>ID</th>
+           <th>分类名称</th>
+           <th>父级ID(pid)</th>
+           <th>路径path</th>
+          </tr>
+         </thead>
+         <tbody>
+         {% for i in data %}
+          <tr class="gradeX">
+           <td class="am-text-middle book_id">{{ i.id }}</td>
+           <td class="am-text-middle">{{i.nbsp}}<span class="type_name" isclick="0">{{ i.Book_name }} </span></td>
+           <td class="am-text-middle">
+               {% if i.Book_pid == 0 %}
+                     顶级分类
+               {% else %}
+                     {{ i.p_name }}
+               {% endif %}
+           </td>
+           <td class="am-text-middle">{{ i.Book_path }}</td>
+
+              <td class="am-text-middle">
+            <div class="tpl-table-black-operation">
+             <a href="">
+              <i class="am-icon-pencil"></i> 编辑
+             </a>
+             <a href="javascript:;" class="tpl-table-black-operation-del delete"> <i class="am-icon-trash"></i> 删除 </a>
+            </div> </td>
+          </tr>
+         {% endfor %}
+          <!-- more data -->
+         </tbody>
+        </table>
+       </div>
+       <div class="am-u-lg-12 am-cf">
+        <div class="am-fr">
+         <ul class="am-pagination tpl-pagination">
+             {% load pagetag %}
+ <!-- <li class="am-disabled"><a href="#">«</a></li> -->
+             {% show_page data.paginator.num_pages request %}
+ <!-- <li class="am-active"><a href="#">1</a></li> -->
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
+</html>
+<script>
+  // ajax删除用户
+  // 1.给删除按钮绑定点击事件
+  $('.delete').click(function(){
+   // 2.获取当前点击用户的id
+    var book_id = $(this).parents('tr').find('.book_id').text()
+    // ??? 下面代码不知道什么意思
+    var $this = $(this)
+   // alert(book_id)
+  // 3.发送ajax请求给后台进行删除，设置一个会回调函数（请求回来之后的操作）
+    $.get('{% url 'myadmin_BookType_delete' %}',{'id':book_id},function(data){
+     // 4.判断响应的结果
+       alert(data['msg'])
+       if(data['error'] == 0 ){
+        // 如果后台数据删除成功，则页面中删除这一行数据
+        // 此时的$(this) 代表的不再是之前的那个删除按钮而是ajax对象
+         $this.parents('tr').remove()
+       }
+    },'json')
+    // 返回的是json
+  })
+
+
+
+// ajax编辑分类名称
+// type_name 所属span标签 $(this)是一个jQuery对象
+$('.type_name').dblclick(function(){
+           // 解决多次点击双击仍有效的bug
+           // 利用上锁开锁原理，保证同一时间内只能触发一次，标签可编辑
+           is = $(this).attr('isclick')
+           // 1.检测是否上锁
+           if(is == '0'){
+            // 没上锁, 对当前标签进行编辑操作
+                edit_type_name($(this))
+           }
+})
+
+
+function edit_type_name($this){
+// 此时的$this 变量已经是一个jQuery对象,对应着span标签
+	// 进入函数后首先上锁
+	$this.attr('isclick','1')
+ // 1.绑定双击事件，获取当前的分类名称
+	var name = $this.text()
+	var id = $this.parents('tr').find('.book_id').text()
+   //alert(name)
+   // 2.创建一个input输入框，把name放进去
+   var inp = $('<input value="'+name+'" style="color:black">')
+   // 3.把input放置到显示的位置
+   $this.html(inp)
+   // 自动全选内容
+   inp.select()
+   // 4. 给input绑定丧失焦点事件
+   inp.blur(function(){
+   // 这里的$(this）对应着input标签
+		// 5.丧失焦点后，获取更新后的name
+		var new_name = $(this).val()
+		// alert(new_name)
+		// 6.判断新的name是否发生了变化
+		if(new_name == name){
+			// 没变化，还原即可
+			 $this.html(name)
+		}else{
+			// 7.发送ajax请求去后台，更新分类的Book_name
+			// $.post()参数：
+			// 1.提交的地址,
+			// 2.post请求提交的表单数据（以字典的形式传过去），
+			// 3.回调函数function,参数：接收视图函数发来的数据
+			// 4.回调接收的返回数据类型
+
+			// django 中所有的post请求都需要通过CSRF验证
+			$.ajaxSetup({
+				data:{csrfmiddlewaretoken: '{{ csrf_token }}'}
+			})
+			$.post('{% url 'myadmin_BookType_edit' %}',{'id':id, 'name': new_name}, function(data){
+				//alert(data['msg'])
+				// 8. 判断是否更新成功
+				if(data['error']==0){
+				   // 9.显示新的名字
+				   $this.html(new_name)
+				}else{
+					$this.html(name)
+				}
+			}, 'json')
+		}
+		// 当丧失焦点后解锁
+		$this.attr('isclick', '0')
+	})
+}
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
